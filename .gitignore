@@ -27,3 +27,4 @@ phpunit.phar
 /phpunit.xml
 app-template.iml
 .idea/
+config/db.php

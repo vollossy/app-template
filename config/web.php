@@ -6,6 +6,12 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -17,7 +23,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
+        'mail' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
@@ -34,6 +40,25 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                    'sourceLanguage' => 'ru-RU',
+                    'fileMap' => [
+                        'app*' => 'app.php'
+                    ],
+                ],
+            ],
+        ],
+        'formatter' => [
+            'dateFormat' => 'd.m.Y',
+            'datetimeFormat' => 'd.m.Y H:i:s'
+        ],
+        'authManager' => [
+            'class' => \yii\rbac\DbManager::className()
+        ]
     ],
     'params' => $params,
 ];
